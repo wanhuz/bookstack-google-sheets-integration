@@ -71,17 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(btnWrap);
 
   // --- Title bar ---
-    const pageTitle = document.querySelector("#bkmrk-page-title")?.innerText.trim() || "Untitled";
-    const titleBar = document.createElement("div");
-    titleBar.className = "sheet-title-bar";
-    titleBar.id = "sheet-title-bar";
-    titleBar.innerText = pageTitle;
-
-    // Insert as first child of #content
-    const contentDiv = document.getElementById("content");
-    if (contentDiv) {
-        contentDiv.insertBefore(titleBar, contentDiv.firstChild);
-    }
+  const pageTitle = document.querySelector("#bkmrk-page-title")?.innerText.trim() || "Untitled";
+  const titleBar = document.createElement("div");
+  titleBar.className = "sheet-title-bar";
+  titleBar.innerText = pageTitle;
+  titleBar.id = "sheet-title-bar";
+  iframe.parentNode.insertBefore(titleBar, iframe);
+  
   function updateTitleBar() {
     titleBar.style.display = inEditMode ? "none" : "block";
   }
