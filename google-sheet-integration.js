@@ -83,19 +83,5 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   updateTitleBar();
 
-    // Adjust iframe height dynamically based on title bar
-function resizeIframe() {
-  const titleHeight = titleBar.getBoundingClientRect().height || 0;
-  iframe.style.position = "fixed";       // ensure still fixed
-  iframe.style.top = `${titleHeight}px`;
-  iframe.style.left = "0";
-  iframe.style.width = "100vw";
-  iframe.style.height = `calc(100vh - ${titleHeight}px)`;
-}
 
-// Wait a tick to ensure title renders
-setTimeout(resizeIframe, 50);
-
-// Update on resize
-window.addEventListener("resize", resizeIframe);
 });
