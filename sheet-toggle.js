@@ -74,6 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    titleBar.style.display = state.inEditMode ? "none" : "block";
+    titleBar.style.display = window.state.inEditMode ? "none" : "block";
   }
 });
