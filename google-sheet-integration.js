@@ -101,10 +101,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const titleHeight  = titleBar?.getBoundingClientRect().height || 0;
         const mobileTabsHeight = mobileTabs?.getBoundingClientRect().height || 0;
 
+        const smallGap = 2;
+
         // Include mobile tab height if present
         const topOffset = inEditMode
-            ? headerHeight + mobileTabsHeight
-            : headerHeight + titleHeight + mobileTabsHeight;
+            ? headerHeight + mobileTabsHeight + smallGap
+            : headerHeight + titleHeight + mobileTabsHeight + smallGap;
+
 
         iframe.style.position = "fixed";
         iframe.style.top = `${topOffset}px`;

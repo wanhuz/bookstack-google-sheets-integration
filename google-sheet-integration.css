@@ -70,6 +70,10 @@ body.sheet-fullscreen #header {
   display: none !important;
 }
 
+body.sheet-fullscreen iframe[src*="docs.google.com/spreadsheets"] {
+  background-color: white;
+}
+
 /* Make header sticky/fixed at top */
 #header {
   position: fixed;
