@@ -1,4 +1,5 @@
-/* sheet-fullscreen.css */
+
+
 body.sheet-fullscreen .tri-layout-left,
 body.sheet-fullscreen .tri-layout-right,
 body.sheet-fullscreen .footer,
@@ -15,45 +16,24 @@ body.sheet-fullscreen .back-to-top {
   opacity: 0 !important;
   position: absolute !important;
 }
-
 body.sheet-fullscreen #header {
   position: sticky !important;
   top: 0; left: 0; right: 0;
   z-index: 999 !important;
 }
 
-/* Floating edit button styles (shared) */
-.floating-btn {
+/* Shared button style */
+/* Floating button container */
+#floating-btns {
   position: fixed;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  background-color: var(--color-primary, #4285f4);
+  bottom: 20px;
+  right: 20px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  transition: filter 0.2s;
+  gap: 10px; /* spacing between buttons */
   z-index: 9999;
 }
 
-.floating-btn:hover {
-  filter: brightness(0.85);
-}
-
-.floating-btn svg {
-  width: 20px;
-  height: 20px;
-  fill: #fff;
-}
-
-/* Specific buttons offsets */
-#floating-edit-btn { bottom: 20px; right: 20px; }
-
 .floating-btn {
-  position: static;
   bottom: 20px;
   z-index: 9999;
   width: 40px;
@@ -69,7 +49,37 @@ body.sheet-fullscreen #header {
   transition: filter 0.2s;
 }
 
-/* Hide Google Sheets iframe in page editor */
+.floating-btn:hover { filter: brightness(0.85); }
+.floating-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff; /* white icons */
+}
+
+/* BookStack page edit button */
+#floating-edit-btn {
+  right: 20px;
+}
+
+/* Google Sheet toggle button */
+#sheet-toggle-btn {
+  right: 140px; /* offset so they don’t overlap */
+}
+
+    .sheet-title-bar {
+  position: fixed;
+  top: 60px; /* below BookStack header */
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background: #fff;
+  color: #222;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-bottom: 1px solid #ddd;
+}
+
 .page-editor iframe[src*="docs.google.com/spreadsheets"] {
   display: none !important;
 }
