@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(btnWrapper);
 
   function updateTitleBar() {
-    const titleBar = document.getElementsById("sheet-title-bar");
+    const titleBar = document.getElementById("sheet-title-bar");
 
     if (!titleBar) {
       console.error("Failed to find #sheet-title-bar");
