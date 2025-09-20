@@ -126,6 +126,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+    function updateTitleBarPosition() {
+        const titleBar = document.getElementById("sheet-title-bar");
+        const header = document.getElementById("header");
+        const mobileTabs = document.querySelector(".tri-layout-mobile-tabs");
+
+        if (!titleBar) return;
+
+        const headerHeight = header?.getBoundingClientRect().height || 0;
+        const mobileTabsHeight = mobileTabs?.getBoundingClientRect().height || 0;
+
+        titleBar.style.top = `${headerHeight + mobileTabsHeight}px`;
+    }
+
+    // Call initially and on resize/orientation change
+    updateTitleBarPosition();
+    window.addEventListener("resize", updateTitleBarPosition);
+    window.addEventListener("orientationchange", updateTitleBarPosition);
 
 
 });
