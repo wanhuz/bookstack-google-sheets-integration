@@ -74,7 +74,7 @@ body.sheet-fullscreen #header {
 
 /* Make header sticky/fixed at top */
 #header {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -83,7 +83,7 @@ body.sheet-fullscreen #header {
 
 /* Title bar below header */
 #sheet-title-bar {
-  position: sticky; /* or fixed if you want it always visible */
+  position: fixed; /* or fixed if you want it always visible */
   top: var(--header-height, 60px); /* match header height */
   width: 100%;
   z-index: 999;
