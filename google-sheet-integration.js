@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       iframe.src = inEditMode ? editUrl : previewUrl;
       sheetBtn.innerHTML = inEditMode ? pencilSVG : gridSVG;
       updateTitleBar();
+      updateIframePosition();
     }
   });
 
