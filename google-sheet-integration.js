@@ -81,4 +81,17 @@ document.addEventListener("DOMContentLoaded", () => {
     titleBar.style.display = inEditMode ? "none" : "block";
   }
   updateTitleBar();
+
+    // Adjust iframe height dynamically based on title bar
+    function resizeIframe() {
+    const titleHeight = titleBar.offsetHeight || 0;
+    iframe.style.top = `${titleHeight}px`;
+    iframe.style.height = `calc(100vh - ${titleHeight}px)`;
+    }
+
+    // Initial resize
+    resizeIframe();
+
+    // Resize whenever window changes
+    window.addEventListener("resize", resizeIframe);
 });
