@@ -66,20 +66,37 @@ body.sheet-fullscreen #header {
   right: 140px; /* offset so they don’t overlap */
 }
 
-    .sheet-title-bar {
-  position: fixed;
-  top: 60px; /* below BookStack header */
-  left: 0;
-  right: 0;
-  z-index: 900;
-  background: #fff;
-  color: #222;
-  font-weight: bold;
-  font-size: 16px;
-  padding: 8px 16px;
-  border-bottom: 1px solid #ddd;
-}
+
 
 .page-editor iframe[src*="docs.google.com/spreadsheets"] {
   display: none !important;
+}
+
+/* Make header sticky/fixed at top */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Title bar below header */
+#sheet-title-bar {
+  position: sticky; /* or fixed if you want it always visible */
+  top: var(--header-height, 60px); /* match header height */
+  width: 100%;
+  z-index: 999;
+  background: var(--body-background, #fff);
+  padding: 8px 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.sheet-fullscreen iframe {
+  position: absolute;
+  top: calc(var(--header-height, 60px) + var(--title-height, 40px));
+  left: 0;
+  width: 100vw;
+  bottom: 0; /* fills to bottom of viewport */
+  border: 0;
 }
