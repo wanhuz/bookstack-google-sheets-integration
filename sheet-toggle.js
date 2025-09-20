@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
   sheetBtn.innerHTML = gridSVG;
 
   sheetBtn.onclick = () => {
-    state.inEditMode = !state.inEditMode;
+    window.state.inEditMode = !state.inEditMode;
     iframe.src = state.inEditMode ? editUrl : previewUrl;
     sheetBtn.innerHTML = state.inEditMode ? pencilSVG : gridSVG;
     updateTitleBar();
