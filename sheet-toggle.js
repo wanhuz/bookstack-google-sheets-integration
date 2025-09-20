@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const iframe = document.querySelector("iframe[src*='docs.google.com/spreadsheets']");
   if (!iframe) return;
 
+  const titleBar = document.querySelector(".sheet-title-bar");
+  if (!titleBar) return;
+
   // --- Mark page as fullscreen ---
   document.body.classList.add("sheet-fullscreen");
 
@@ -16,9 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const editUrl    = `https://docs.google.com/spreadsheets/d/${sheetId}/edit?embedded=true`;
 
   // --- State ---
-  window.state = { inEditMode: false };
   const state = window.state.inEditMode;
-
   iframe.src = previewUrl; // Start in preview mode
 
   // --- SVG icons ---
@@ -67,4 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
   btnWrapper.appendChild(sheetBtn);
   btnWrapper.appendChild(editBtn);
   document.body.appendChild(btnWrapper);
+
+  function updateTitleBar() {
+    titleBar.style.display = state.inEditMode ? "none" : "block";
+  }
 });
