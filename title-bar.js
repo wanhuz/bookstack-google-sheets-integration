@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const iframe = document.querySelector("iframe[src*='docs.google.com/spreadsheets']");
+  if (!iframe) return;
+
   // --- Create title bar ---
   const pageTitle = document.querySelector("#bkmrk-page-title")?.innerText.trim() || "Untitled";
   const titleBar = document.createElement("div");
