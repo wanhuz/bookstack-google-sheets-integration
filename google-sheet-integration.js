@@ -88,6 +88,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   updateTitleBar();
 
+    function updateIframePosition() {
+        const header = document.getElementById("header");
+        const titleBar = document.getElementById("sheet-title-bar");
+
+        const headerHeight = header?.getBoundingClientRect().height || 0;
+        const titleHeight  = titleBar?.getBoundingClientRect().height || 0;
+        const topOffset = headerHeight + titleHeight;
+
+        iframe.style.position = "fixed";
+        iframe.style.top = `${topOffset}px`;
+        iframe.style.left = "0";
+        iframe.style.width = "100vw";
+        iframe.style.height = `calc(100vh - ${topOffset}px)`;
+        iframe.style.border = "0";
+        iframe.style.margin = "0";
+        iframe.style.padding = "0";
+    }
+
+    // Call initially
+    updateIframePosition();
+
+    // Update on resize in case header/title changes
+    window.addEventListener("resize", updateIframePosition);
 
 
 
