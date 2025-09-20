@@ -16,7 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const editUrl    = `https://docs.google.com/spreadsheets/d/${sheetId}/edit?embedded=true`;
 
   // --- State ---
-  const state = { inEditMode: false };
+  window.state = { inEditMode: false };
+  const state = window.state.inEditMode;
+
   iframe.src = previewUrl; // Start in preview mode
 
   // --- SVG icons ---
