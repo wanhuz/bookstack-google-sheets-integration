@@ -53,6 +53,7 @@ body.sheet-fullscreen #header {
 #floating-edit-btn { bottom: 20px; right: 20px; }
 
 .floating-btn {
+  position: static;
   bottom: 20px;
   z-index: 9999;
   width: 40px;
