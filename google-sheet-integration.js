@@ -90,13 +90,21 @@ document.addEventListener("DOMContentLoaded", () => {
   updateTitleBar();
 
     function updateIframePosition() {
+        const iframe = document.querySelector("iframe[src*='docs.google.com/spreadsheets']");
+        if (!iframe) return;
+
         const header = document.getElementById("header");
         const titleBar = document.getElementById("sheet-title-bar");
+        const mobileTabs = document.querySelector(".tri-layout-mobile-tabs");
 
         const headerHeight = header?.getBoundingClientRect().height || 0;
         const titleHeight  = titleBar?.getBoundingClientRect().height || 0;
+        const mobileTabsHeight = mobileTabs?.getBoundingClientRect().height || 0;
 
-        const topOffset = inEditMode ? headerHeight : headerHeight + titleHeight ;
+        // Include mobile tab height if present
+        const topOffset = inEditMode
+            ? headerHeight + mobileTabsHeight
+            : headerHeight + titleHeight + mobileTabsHeight;
 
         iframe.style.position = "fixed";
         iframe.style.top = `${topOffset}px`;
@@ -108,11 +116,12 @@ document.addEventListener("DOMContentLoaded", () => {
         iframe.style.padding = "0";
     }
 
-    // Call initially
+    // Call initially and on resize/orientation change
     updateIframePosition();
-
-    // Update on resize in case header/title changes
     window.addEventListener("resize", updateIframePosition);
+    window.addEventListener("orientationchange", updateIframePosition);
+
+
 
 
 
