@@ -1,0 +1,58 @@
+/* sheet-fullscreen.css */
+body.sheet-fullscreen .tri-layout-left,
+body.sheet-fullscreen .tri-layout-right,
+body.sheet-fullscreen .footer,
+body.sheet-fullscreen .book-header,
+body.sheet-fullscreen .sidebar,
+body.sheet-fullscreen #sibling-navigation,
+body.sheet-fullscreen .comments-container,
+body.sheet-fullscreen .back-to-top {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  opacity: 0 !important;
+  position: absolute !important;
+}
+
+body.sheet-fullscreen #header {
+  position: sticky !important;
+  top: 0; left: 0; right: 0;
+  z-index: 999 !important;
+}
+
+/* Floating edit button styles (shared) */
+.floating-btn {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-primary, #4285f4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: filter 0.2s;
+  z-index: 9999;
+}
+
+.floating-btn:hover {
+  filter: brightness(0.85);
+}
+
+.floating-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+
+/* Specific buttons offsets */
+#floating-edit-btn { bottom: 20px; right: 20px; }
+
+/* Hide Google Sheets iframe in page editor */
+.page-editor iframe[src*="docs.google.com/spreadsheets"] {
+  display: none !important;
+}

@@ -1,0 +1,24 @@
+/* Floating button container */
+#floating-btns {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px; /* spacing if more buttons are added */
+  z-index: 9999;
+}
+
+/* Title bar above iframe */
+.sheet-title-bar {
+  position: fixed;
+  top: 60px; /* below BookStack header */
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background: #fff;
+  color: #222;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-bottom: 1px solid #ddd;
+}
