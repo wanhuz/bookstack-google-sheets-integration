@@ -3,9 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const iframe = document.querySelector("iframe[src*='docs.google.com/spreadsheets']");
   if (!iframe) return;
 
-  const titleBar = document.querySelector(".sheet-title-bar");
-  if (!titleBar) return;
-
   // --- Mark page as fullscreen ---
   document.body.classList.add("sheet-fullscreen");
 
@@ -70,6 +67,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(btnWrapper);
 
   function updateTitleBar() {
+    const titleBar = document.getElementsById("sheet-title-bar");
+
+    if (!titleBar) {
+      console.error("Failed to find #sheet-title-bar");
+      return;
+    }
+
     titleBar.style.display = state.inEditMode ? "none" : "block";
   }
 });
