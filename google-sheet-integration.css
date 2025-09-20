@@ -75,7 +75,7 @@ body.sheet-fullscreen iframe[src*="docs.google.com/spreadsheets"] {
 }
 
 /* Make header sticky/fixed at top */
-#header {
+body.sheet-fullscreen #header {
   position: fixed;
   top: 0;
   left: 0;
@@ -88,7 +88,7 @@ body.sheet-fullscreen iframe[src*="docs.google.com/spreadsheets"] {
   position: fixed; /* or fixed if you want it always visible */
   top: var(--header-height); /* match header height */
   width: 100%;
-  z-index: 999;
+  z-index: 990;
   background: var(--body-background, #fff);
   padding: 8px 16px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
