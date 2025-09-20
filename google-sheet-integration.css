@@ -16,11 +16,7 @@ body.sheet-fullscreen .back-to-top {
   opacity: 0 !important;
   position: absolute !important;
 }
-body.sheet-fullscreen #header {
-  position: sticky !important;
-  top: 0; left: 0; right: 0;
-  z-index: 999 !important;
-}
+
 
 /* Shared button style */
 /* Floating button container */
@@ -70,13 +66,17 @@ body.sheet-fullscreen #header {
   display: none !important;
 }
 
+body.sheet-fullscreen iframe[src*="docs.google.com/spreadsheets"] {
+  background-color: white;
+}
+
 /* Make header sticky/fixed at top */
-#header {
+body.sheet-fullscreen #header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 999;
 }
 
 /* Title bar below header */
@@ -84,7 +84,7 @@ body.sheet-fullscreen #header {
   position: fixed; /* or fixed if you want it always visible */
   top: var(--header-height); /* match header height */
   width: 100%;
-  z-index: 999;
+  z-index: 990;
   background: var(--body-background, #fff);
   padding: 8px 16px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
