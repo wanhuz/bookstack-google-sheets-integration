@@ -95,7 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const headerHeight = header?.getBoundingClientRect().height || 0;
         const titleHeight  = titleBar?.getBoundingClientRect().height || 0;
-        const topOffset = headerHeight + titleHeight;
+
+        const topOffset = inEditMode ? headerHeight : headerHeight + titleHeight ;
 
         iframe.style.position = "fixed";
         iframe.style.top = `${topOffset}px`;
