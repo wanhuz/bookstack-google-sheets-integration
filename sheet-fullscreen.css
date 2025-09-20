@@ -52,6 +52,22 @@ body.sheet-fullscreen #header {
 /* Specific buttons offsets */
 #floating-edit-btn { bottom: 20px; right: 20px; }
 
+.floating-btn {
+  bottom: 20px;
+  z-index: 9999;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-primary, #4285f4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: filter 0.2s;
+}
+
 /* Hide Google Sheets iframe in page editor */
 .page-editor iframe[src*="docs.google.com/spreadsheets"] {
   display: none !important;
