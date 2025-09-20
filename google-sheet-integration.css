@@ -16,11 +16,7 @@ body.sheet-fullscreen .back-to-top {
   opacity: 0 !important;
   position: absolute !important;
 }
-body.sheet-fullscreen #header {
-  position: sticky !important;
-  top: 0; left: 0; right: 0;
-  z-index: 999 !important;
-}
+
 
 /* Shared button style */
 /* Floating button container */
@@ -80,7 +76,7 @@ body.sheet-fullscreen #header {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 999;
 }
 
 /* Title bar below header */
