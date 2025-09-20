@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const titleBar = document.createElement("div");
   titleBar.className = "sheet-title-bar";
   titleBar.innerText = pageTitle;
+  titleBar.id = "sheet-title-bar";
   iframe.parentNode.insertBefore(titleBar, iframe);
 
   function updateTitleBar() {
