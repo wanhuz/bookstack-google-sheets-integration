@@ -74,7 +74,7 @@ body.sheet-fullscreen #header {
 
 /* Make header sticky/fixed at top */
 #header {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -92,11 +92,3 @@ body.sheet-fullscreen #header {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.sheet-fullscreen iframe {
-  position: absolute;
-  top: calc(var(--header-height, 60px) + var(--title-height, 40px));
-  left: 0;
-  width: 100vw;
-  bottom: 0; /* fills to bottom of viewport */
-  border: 0;
-}
