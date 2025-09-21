@@ -55,11 +55,6 @@ body.sheet-fullscreen .back-to-top {
   fill: #fff;
 }
 
-/* Button specific positions */
-#sheet-toggle-btn {
-  margin-right: 120px; /* separate from edit button */
-}
-
 /* ------------------------------------------
    Iframe Styles
 ------------------------------------------- */
