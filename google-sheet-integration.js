@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
             : headerHeight + titleHeight + mobileTabsHeight;
 
 
-        iframe.style.position = "absolute";
+        iframe.style.position = "fixed";
         iframe.style.top = `${topOffset}px`;
         iframe.style.left = "0";
         iframe.style.width = "100vw";
