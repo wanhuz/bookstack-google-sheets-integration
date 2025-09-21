@@ -2,7 +2,6 @@
 
 A lightweight hack to embed Google Sheets into Bookstack pages in a fullscreen, interactive way, with convenient floating buttons for editing the sheet or the Bookstack page itself.
 
----
 
 ## Screenshots
 
@@ -13,8 +12,6 @@ A lightweight hack to embed Google Sheets into Bookstack pages in a fullscreen, 
 ### Edit Mode
 <img width="1918" height="918" alt="Editor" src="https://github.com/user-attachments/assets/0341cecd-b8df-4592-a3f4-64b89d9bf0f5" />
 
-
----
 
 ## Features
 
@@ -27,7 +24,6 @@ A lightweight hack to embed Google Sheets into Bookstack pages in a fullscreen, 
 
 > ⚠️ Note: Touch scrolling on mobile devices inside the iframe may not behave perfectly due to browser limitations.
 
----
 
 ## Installation
 
@@ -46,7 +42,7 @@ A lightweight hack to embed Google Sheets into Bookstack pages in a fullscreen, 
    <script src="/path/to/google-sheet-integration.js"></script>
    ```
 
----
+
 
 
 
@@ -63,7 +59,7 @@ A lightweight hack to embed Google Sheets into Bookstack pages in a fullscreen, 
 - Click the **floating grid/pencil icon** to toggle between preview and edit modes of the Google Sheet.  
 - Click the **gear icon** to open the Bookstack page editor.
 
----
+
 
 ## Known Limitations
 
