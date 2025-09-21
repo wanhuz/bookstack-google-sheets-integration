@@ -6,145 +6,112 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("sheet-fullscreen");
 
   // --- Extract Sheet ID ---
-  const match = iframe.src.match(/\/d\/([a-zA-Z0-9-_]+)/);
-  if (!match) return;
-  const sheetId = match[1];
+  const sheetMatch = iframe.src.match(/\/d\/([a-zA-Z0-9-_]+)/);
+  if (!sheetMatch) return;
+  const sheetId = sheetMatch[1];
 
-  // --- Base URLs ---
+  // --- Google Sheet URLs ---
   const previewUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/preview?embedded=true`;
-  const editUrl    = `https://docs.google.com/spreadsheets/d/${sheetId}/edit?embedded=true`;
+  const editUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/edit?embedded=true`;
 
   // --- State ---
   let inEditMode = false;
-  iframe.src = previewUrl; // Start in preview mode
+  iframe.src = previewUrl;
 
-  // --- Helper to create floating buttons ---
-  function createButton({ id, svgContent, onClick }) {
+  // --- SVG Icons ---
+  const ICONS = {
+    grid: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
+    pencil: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 4h7v7H3zM14 4h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>`,
+    edit: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.21-.37-.3-.59-.22l-2.39.96c-.5-.38-1.02-.7-1.6-.94L14.5 2.81c-.03-.23-.25-.41-.5-.41h-4c-.25 0-.47.18-.5.41L8.34 5.02c-.57.24-1.09.56-1.59.94L4.36 5c-.22-.08-.47.01-.59.22L1.85 8.55c-.11.21-.06.48.12.61l2.02 1.58c-.04.31-.06.63-.06.94s.02.63.06.94L1.94 14.95c-.18.14-.23.41-.12.61l1.92 3.32c.12.21.37.3.59.22l2.39-.96c.5.38 1.02.7 1.6.94l.67 2.21c.03.23.25.41.5.41h4c.25 0 .47-.18.5-.41l.67-2.21c.58-.24 1.1-.56 1.6-.94l2.39.96c.22.08.47-.01.59-.22l1.92-3.32c.12-.21.07-.48-.12-.61l-2.03-1.58zM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/></svg>`
+  };
+
+  // --- Create Floating Button ---
+  const createButton = ({ id, icon, onClick }) => {
     const btn = document.createElement("button");
     btn.id = id;
     btn.classList.add("floating-btn");
-    btn.innerHTML = svgContent;
+    btn.innerHTML = icon;
     btn.onclick = onClick;
     return btn;
-  }
+  };
 
-  // --- SVG Icons ---
-  const gridSVG = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-    </svg>
-  `;
-  const pencilSVG = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d="M3 4h7v7H3zM14 4h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/>
-    </svg>
-  `;
-  const editSVG = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-      <path fill="#fff" d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.21-.37-.3-.59-.22l-2.39.96c-.5-.38-1.02-.7-1.6-.94L14.5 2.81c-.03-.23-.25-.41-.5-.41h-4c-.25 0-.47.18-.5.41L8.34 5.02c-.57.24-1.09.56-1.59.94L4.36 5c-.22-.08-.47.01-.59.22L1.85 8.55c-.11.21-.06.48.12.61l2.02 1.58c-.04.31-.06.63-.06.94s.02.63.06.94L1.94 14.95c-.18.14-.23.41-.12.61l1.92 3.32c.12.21.37.3.59.22l2.39-.96c.5.38 1.02.7 1.6.94l.67 2.21c.03.23.25.41.5.41h4c.25 0 .47-.18.5-.41l.67-2.21c.58-.24 1.1-.56 1.6-.94l2.39.96c.22.08.47-.01.59-.22l1.92-3.32c.12-.21.07-.48-.12-.61l-2.03-1.58zM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/>
-    </svg>
-  `;
-
-  // --- Create buttons ---
+  // --- Toggle Sheet Button ---
   const sheetBtn = createButton({
     id: "sheet-toggle-btn",
-    svgContent: gridSVG,
+    icon: ICONS.grid,
     onClick: () => {
       inEditMode = !inEditMode;
       iframe.src = inEditMode ? editUrl : previewUrl;
-      sheetBtn.innerHTML = inEditMode ? pencilSVG : gridSVG;
+      sheetBtn.innerHTML = inEditMode ? ICONS.pencil : ICONS.grid;
       updateTitleBar();
       updateIframePosition();
     }
   });
 
+  // --- Floating Page Edit Button ---
   const pageBtn = createButton({
     id: "floating-edit-btn",
-    svgContent: editSVG,
-    onClick: () => { window.location.href = window.location.href + "/edit"; }
+    icon: ICONS.edit,
+    onClick: () => window.location.href = window.location.href + "/edit"
   });
 
-  // --- Button wrapper ---
-  const btnWrap = document.createElement("div");
-  btnWrap.id = "floating-btns";
-  btnWrap.appendChild(sheetBtn);
-  btnWrap.appendChild(pageBtn);
-  document.body.appendChild(btnWrap);
+  // --- Append Buttons to Page ---
+  const btnWrapper = document.createElement("div");
+  btnWrapper.id = "floating-btns";
+  btnWrapper.append(sheetBtn, pageBtn);
+  document.body.appendChild(btnWrapper);
 
-  // --- Title bar ---
-    const pageTitle = document.querySelector("#bkmrk-page-title")?.innerText.trim() || "Untitled";
-    const titleBar = document.createElement("div");
-    titleBar.className = "sheet-title-bar";
-    titleBar.id = "sheet-title-bar";
-    titleBar.innerText = pageTitle;
+  // --- Title Bar ---
+  const pageTitle = document.querySelector("#bkmrk-page-title")?.innerText.trim() || "Untitled";
+  const titleBar = document.createElement("div");
+  titleBar.className = "sheet-title-bar";
+  titleBar.id = "sheet-title-bar";
+  titleBar.innerText = pageTitle;
+  const contentDiv = document.getElementById("content");
+  contentDiv?.insertBefore(titleBar, contentDiv.firstChild);
 
-    // Insert as first child of #content
-    const contentDiv = document.getElementById("content");
-    if (contentDiv) {
-        contentDiv.insertBefore(titleBar, contentDiv.firstChild);
-    }
-
-  function updateTitleBar() {
+  const updateTitleBar = () => {
     titleBar.style.display = inEditMode ? "none" : "block";
-  }
+  };
   updateTitleBar();
 
-    function updateIframePosition() {
-        const iframe = document.querySelector("iframe[src*='docs.google.com/spreadsheets']");
-        if (!iframe) return;
+  // --- Update Iframe Position ---
+  const updateIframePosition = () => {
+    const header = document.getElementById("header");
+    const mobileTabs = document.querySelector(".tri-layout-mobile-tabs");
 
-        const header = document.getElementById("header");
-        const titleBar = document.getElementById("sheet-title-bar");
-        const mobileTabs = document.querySelector(".tri-layout-mobile-tabs");
+    const topOffset = (header?.getBoundingClientRect().height || 0)
+                    + (inEditMode ? (mobileTabs?.getBoundingClientRect().height || 0) 
+                                  : (titleBar?.getBoundingClientRect().height || 0) + (mobileTabs?.getBoundingClientRect().height || 0));
+    
+    Object.assign(iframe.style, {
+      position: "fixed",
+      top: `${topOffset}px`,
+      left: "0",
+      width: "100vw",
+      height: `calc(100vh - ${topOffset}px)`,
+      border: "0",
+      margin: "0",
+      padding: "2px"
+    });
+  };
+  updateIframePosition();
+  window.addEventListener("resize", updateIframePosition);
+  window.addEventListener("orientationchange", updateIframePosition);
 
-        const headerHeight = header?.getBoundingClientRect().height || 0;
-        const titleHeight  = titleBar?.getBoundingClientRect().height || 0;
-        const mobileTabsHeight = mobileTabs?.getBoundingClientRect().height || 0;
+  // --- Update Title Bar Position ---
+  const updateTitleBarPosition = () => {
+    const header = document.getElementById("header");
+    const mobileTabs = document.querySelector(".tri-layout-mobile-tabs");
+    if (!header || !titleBar) return;
 
-        const smallPadding = 2;
+    header.style.position = mobileTabs ? "sticky" : "fixed";
+    const headerHeight = header.getBoundingClientRect().height || 0;
+    const mobileTabsHeight = mobileTabs?.getBoundingClientRect().height || 0;
 
-        // Include mobile tab height if present
-        const topOffset = inEditMode
-            ? headerHeight + mobileTabsHeight
-            : headerHeight + titleHeight + mobileTabsHeight;
-
-
-        iframe.style.position = "fixed";
-        iframe.style.top = `${topOffset}px`;
-        iframe.style.left = "0";
-        iframe.style.width = "100vw";
-        iframe.style.height = `calc(100vh - ${topOffset}px)`;
-        iframe.style.border = "0";
-        iframe.style.margin = "0";
-        iframe.style.padding = `${smallPadding}px`;
-    }
-
-    // Call initially and on resize/orientation change
-    updateIframePosition();
-    window.addEventListener("resize", updateIframePosition);
-    window.addEventListener("orientationchange", updateIframePosition);
-
-
-
-    function updateTitleBarPosition() {
-        const titleBar = document.getElementById("sheet-title-bar");
-        const header = document.getElementById("header");
-        const mobileTabs = document.querySelector(".tri-layout-mobile-tabs");
-
-        header.style.position = mobileTabs ? "sticky" : "fixed";
-
-        if (!titleBar) return;
-
-        const headerHeight = header?.getBoundingClientRect().height || 0;
-        const mobileTabsHeight = mobileTabs?.getBoundingClientRect().height || 0;
-
-        titleBar.style.top = `${headerHeight + mobileTabsHeight}px`;
-    }
-
-    // Call initially and on resize/orientation change
-    updateTitleBarPosition();
-    window.addEventListener("resize", updateTitleBarPosition);
-    window.addEventListener("orientationchange", updateTitleBarPosition);
-
-
+    titleBar.style.top = `${headerHeight + mobileTabsHeight}px`;
+  };
+  updateTitleBarPosition();
+  window.addEventListener("resize", updateTitleBarPosition);
+  window.addEventListener("orientationchange", updateTitleBarPosition);
 });
