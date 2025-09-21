@@ -101,12 +101,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const titleHeight  = titleBar?.getBoundingClientRect().height || 0;
         const mobileTabsHeight = mobileTabs?.getBoundingClientRect().height || 0;
 
-        const smallGap = 2;
+        const smallPadding = 2;
 
         // Include mobile tab height if present
         const topOffset = inEditMode
-            ? headerHeight + mobileTabsHeight + smallGap
-            : headerHeight + titleHeight + mobileTabsHeight + smallGap;
+            ? headerHeight + mobileTabsHeight
+            : headerHeight + titleHeight + mobileTabsHeight;
 
 
         iframe.style.position = "fixed";
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
         iframe.style.height = `calc(100vh - ${topOffset}px)`;
         iframe.style.border = "0";
         iframe.style.margin = "0";
-        iframe.style.padding = "0";
+        iframe.style.padding = `${smallPadding}px`;
     }
 
     // Call initially and on resize/orientation change
