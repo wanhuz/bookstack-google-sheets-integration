@@ -4,6 +4,18 @@ A lightweight hack to embed Google Sheets into BookStack pages in a fullscreen, 
 
 ---
 
+## Screenshots
+
+### Preview Mode
+<img width="1919" height="915" alt="Preview" src="https://github.com/user-attachments/assets/c5b85aaa-c2a9-4a77-937b-673f2f0acc17" />
+
+
+### Edit Mode
+<img width="1918" height="918" alt="Editor" src="https://github.com/user-attachments/assets/0341cecd-b8df-4592-a3f4-64b89d9bf0f5" />
+
+
+---
+
 ## Features
 
 - **Seamless Google Sheets Integration**: Work with your Google Sheet inside Bookstack.  
