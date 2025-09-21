@@ -131,6 +131,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const header = document.getElementById("header");
         const mobileTabs = document.querySelector(".tri-layout-mobile-tabs");
 
+        header.style.position = mobileTabs ? "sticky" : "fixed";
+
         if (!titleBar) return;
 
         const headerHeight = header?.getBoundingClientRect().height || 0;
