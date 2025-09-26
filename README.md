@@ -1,6 +1,6 @@
 # Bookstack Google Sheets Integration
 
-A lightweight hack to embed Google Sheets into Bookstack pages in a fullscreen, interactive way, with convenient floating buttons for editing the sheet or the Bookstack page itself.
+A lightweight hack to embed Google Sheets into Bookstack pages in a fullscreen, interactive way, with convenient floating buttons for editing the sheet or the Bookstack page itself. I create this so that I can manage all my document in one place, instead of needing to open Google Sheet.
 
 
 ## Screenshots
