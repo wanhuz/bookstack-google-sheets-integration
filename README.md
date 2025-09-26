@@ -5,7 +5,7 @@ A lightweight hack to use Google Sheets inside Bookstack with existing sheet or 
 
 ## Screenshots
 
-### Preview Mode
+### Read Mode
 <img width="1919" height="915" alt="Preview" src="https://github.com/user-attachments/assets/c5b85aaa-c2a9-4a77-937b-673f2f0acc17" />
 
 
@@ -15,12 +15,10 @@ A lightweight hack to use Google Sheets inside Bookstack with existing sheet or 
 
 ## Features
 
-- **Seamless Google Sheets Integration**: Work with your Google Sheet inside Bookstack.  
-- **Floating Buttons**:  
+- **Google Sheets Integration**: Work with your Google Sheet inside Bookstack.  
+- **Editor Mode Buttons**:  
   - **Sheet Mode Toggle**: Switch between preview (`preview?embedded=true`) and edit (`edit?embedded=true`) modes of the Google Sheet.  
   - **Page Edit**: Open the Bookstack page editor to make change to the page.  
-- **Dynamic Title Bar**: Displays the Bookstack page title above the sheet when in preview mode.  
-- **Responsive**: Automatically adjusts iframe height based on header and title bar height.  
 
 > ⚠️ Note: Touch scrolling on mobile devices inside the iframe may not behave perfectly due to browser limitations.
 
@@ -55,8 +53,8 @@ A lightweight hack to use Google Sheets inside Bookstack with existing sheet or 
 <iframe src="https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit?embedded=true"></iframe>
 ```
 
-- The sheet will load in **preview mode** by default.  
-- Click the **floating grid/pencil icon** to toggle between preview and edit modes of the Google Sheet.  
+- The sheet will load in **read mode** by default.  
+- Click the **floating grid/pencil icon** to toggle between read and edit modes of the Google Sheet.  
 - Click the **gear icon** to open the Bookstack page editor.
 
 
@@ -65,6 +63,8 @@ A lightweight hack to use Google Sheets inside Bookstack with existing sheet or 
 
 - Mobile horizontal touch scrolling may feel awkward inside the iframe.
 - The hack relies on position: fixed for fullscreen behavior, which can conflict with some custom Bookstack themes or plugins.
+- Does not work with Bookstack dark mode. Possible to do, but I don't feel like implementing it.
+- Right panel option to delete, copy and other operation is hidden by Google Sheet. Currently, there is no easy way to delete page except to remove iframe and delete it normally. Might fix this later.
 
 ## License
 
